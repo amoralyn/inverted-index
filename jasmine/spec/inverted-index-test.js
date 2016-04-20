@@ -32,31 +32,30 @@ describe ("Search index", function () {
   index.createIndex("books.json");
   it ("verifies that search returns correct result", function () {
     expect (index.searchIndex("alice wonderland")).toEqual([[0],[0]]);
-    console.log(index.data);
     expect (index.searchIndex("lord ring of")).toEqual([[1],[1],[0,1]]);
     expect (index.searchIndex("the")).toEqual([1]);
   });
   it("verifies searching an index returns array of indices of correct object", function() {
-    expect (index.searchIndex("into")).toEqual([[0]]);
-    expect (index.searchIndex("wizard")).toEqual([[1]]);
-    expect (index.searchIndex("a")).toEqual([[0, 1]]);
-    expect (index.searchIndex("of")).toEqual([[0, 1]]);
-    expect (index.searchIndex("lord")).toEqual([[1]]);
-    expect (index.searchIndex("elf")).toEqual([[1]]);
+    expect (index.searchIndex("into")).toEqual([0]);
+    expect (index.searchIndex("wizard")).toEqual([1]);
+    expect (index.searchIndex("a")).toEqual([0, 1]);
+    expect (index.searchIndex("of")).toEqual([0, 1]);
+    expect (index.searchIndex("lord")).toEqual([1]);
+    expect (index.searchIndex("elf")).toEqual([1]);
   });
   it("can handle varied number of search terms", function() {
-    expect(index.searchIndex(['alice', 'in', 'wonderland'])).toEqual([[0],[0],[0]]);
-    expect(index.searchIndex(['lord', 'of', 'the', 'rings'])).toEqual([[1],[0, 1],[1],[1]]);
-    expect(index.searchIndex(['an', 'unusual', 'alliance', 'of', 'man'])).toEqual([[1],[1],[1],[0, 1],[1]]);
+    expect(index.searchIndex('alice in wonderland')).toEqual([[0],[0],[0]]);
+    expect(index.searchIndex('lord of the rings')).toEqual([[1],[0, 1],[1],[1]]);
+    expect(index.searchIndex('an unusual alliance of man')).toEqual([[1],[1],[1],[0, 1],[1]]);
   });
-  it("ensures search can handle a varied number of arguments and strings with space characters", function() {
-  expect(index.searchIndex('alice', 'alice in wonderland', 'in')).toEqual([[0],[0],[0],[0],[0]]);
-  expect(index.searchIndex('lord', 'of', 'the', 'rings')).toEqual([[1],[0, 1],[1],[1]]);
-  expect(index.searchIndex('an', 'unusual', 'alliance', 'of', 'man')).toEqual([[1],[1],[1],[0, 1],[1]]);
+  it("ensures search can handle an array of words", function() {
+  expect(index.searchIndex(['alice', 'wonderland', 'in'])).toEqual([[0],[0],[0]]);
+  expect(index.searchIndex(['lord', 'of', 'the', 'rings'])).toEqual([[1],[0, 1],[1],[1]]);
+  expect(index.searchIndex(['an', 'unusual', 'alliance', 'of', 'man'])).toEqual([[1],[1],[1],[0, 1],[1]]);
   });
 
   it("ensures search can handle edge cases", function() {
-    expect(index.searchIndex('alice', 'bicycle', 'in')).toEqual([[0],[],[0]]);
+    expect(index.searchIndex(['alice', 'bicycle', 'in'])).toEqual([[0],[],[0]]);
 
   });
 
