@@ -5,7 +5,9 @@ var InvertedIndex = function () {};
 
 //end of Index class
 
-
+/**
+ * define readFile function
+ */
 InvertedIndex.prototype.readFile = function (filePath) {
   var content;
   $.ajax({
@@ -19,12 +21,14 @@ InvertedIndex.prototype.readFile = function (filePath) {
       content = data;
     }
   });
-  this.content = content;
   return content;
 };
 
 InvertedIndex.prototype.data = {};
 
+/**
+ * define cleanUp function the replaces special characters in a string
+ */
 InvertedIndex.prototype.cleanUp = function (wordsToBeCleaned){
   return wordsToBeCleaned.replace(/[,.:;'"?!-#_*@%$&<>]/g,"");
 };
@@ -32,64 +36,56 @@ InvertedIndex.prototype.cleanUp = function (wordsToBeCleaned){
 InvertedIndex.prototype.createIndex = function (filePath) {
   var that = this;
   var jsonFile = this.readFile(filePath);
-  for (var i in jsonFile) {
-    i = parseInt(i);
-    var bookContent = jsonFile[i].title + " " + jsonFile[i].text;
-    bookContent = bookContent.split(/\s/); //split sentence by space
-    var wordsInBook = null;
-    for (var j in bookContent) {
-      wordsInBook = this.cleanUp(bookContent[j]);
-      // removes special characters
-      wordsInBook = wordsInBook.toLowerCase(); //change to lower case
-      if (this.data.hasOwnProperty(wordsInBook)) {
-        if (this.data[wordsInBook].indexOf(i) === -1){
-          this.data[wordsInBook].push(i);
+  for (var bookIndex=0; bookIndex<jsonFile.length; bookIndex++) {
+    var bookContent = jsonFile[bookIndex].title + " " + jsonFile[bookIndex].text;
+    bookContent = this.cleanUp(bookContent);
+    bookContent = bookContent.toLowerCase();
+    var wordsInBook = bookContent.split(/\s/);
+    this.data[bookIndex] = wordsInBook;
+    for(var word in wordsInBook){
+      if (this.data[wordsInBook[word]]){
+        if(this.data[wordsInBook[word]].indexOf(bookIndex) === -1){
+          this.data[wordsInBook[word]].push(bookIndex);
         }
-      } else {
-        this.data[wordsInBook] = [i];
-      }
+      } else{
+      this.data[wordsInBook[word]] = [bookIndex];
     }
-
+    }
   }
 };
-
+/**
+ * define getIndex function
+ */
 InvertedIndex.prototype.getIndex = function (filePath) {
   this.createIndex(filePath);
   return this.data[wordsInBook];
-};
+};// end of getIndex function
 
-InvertedIndex.prototype.searchIndex = function (searchTerms) {
-  var x, data = this.data, searchTerm,
-   searchResult = [];
-  if (searchTerms.indexOf("") !== -1){
-    searchTerm = searchTerms.split(/\s/);
-    }else {
-      searchTerm = searchTerms;
+InvertedIndex.prototype.searchIndex = function (terms) {
+  var termsArray;
+  var that = this;
+  if(Array.isArray(terms)){
+    termsArray = terms;
+  } else if(terms.indexOf(' ') ===-1){
+      return checkOwnProperty(this.data , terms);
     }
-
-  if (typeof searchTerm === 'string') {
-    for (x in data) {
-      if (searchTerm === x){
-        searchResult.push(data[x]);
-      }
-    }
+    else{
+    terms = this.cleanUp(terms).toLowerCase();
+    termsArray = terms.split(/\s/);
   }
 
-  else if (typeof searchTerm === 'object') {
-    for (var i in searchTerm) {
-      if(data.hasOwnProperty(searchTerm[i])) {
-        //looping through the collection of words available
-        for (var j in data) {
-          if (searchTerm[i] === j) {
-            searchResult.push(data[j]);
-            break;
-          }
-        }
-      }else {
-        searchResult.push('Not Available');
-        break;
-      }
-    }
-  }
-  return searchResult;
+  var result =  termsArray.map(function(term){
+     return checkOwnProperty(that.data , term);
+  });
+
+  return result;
 }; //end searchIndex function
+
+function checkOwnProperty(data , term){
+  if(data.hasOwnProperty(term)){
+    return data[term];
+  }
+  else{
+    return [];
+  }
+}
