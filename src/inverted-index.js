@@ -1,3 +1,11 @@
+/*******************************************************
+ * Name: Lovelyn Tijesunimi-Israel
+ * Title: Inverted Index
+ * Description: An Inverted Index object
+ * 							that takes a JSON array of text objects
+ *        			and creates an index from the array.
+ *******************************************************/
+
 var InvertedIndex;
 (function() {
   'use strict';
