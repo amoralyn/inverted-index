@@ -6,7 +6,7 @@ Generates an Inverted Index object that takes a JSON array of text objects. The 
 ##Installation and usage.
 
 1. Install Nodejs.
-2. Download the ZIP file or clone the repository
+2. Download the ZIP file or clone the [repository](https://github.com/andela-gnyenyeshi/inverted-index) .
 3. Ensure that you are on the master branch.
 4. Run npm install php-server while on the project root directory.
 5. Run the command 'php-server' By default, the port is set to 8080 but you can set your port by running 'php -s localhost:[port no]'
