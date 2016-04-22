@@ -2,8 +2,8 @@
  * Name: Lovelyn Tijesunimi-Israel
  * Title: Inverted Index
  * Description: An Inverted Index object
- * 							that takes a JSON array of text objects
- *        			and creates an index from the array.
+ *               that takes a JSON array of text objects
+ *              and creates an index from the array.
  *******************************************************/
 
 // Define Index class
@@ -31,7 +31,6 @@ InvertedIndex.prototype.createIndex = function(filePath) {
 
 // Define getIndex function
 InvertedIndex.prototype.getIndex = function(filePath) {
-    this.createIndex(filePath);
     return this.index;
 };
 // End of getIndex function
