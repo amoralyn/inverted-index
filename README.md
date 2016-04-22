@@ -1,9 +1,9 @@
-Inverted Index
+#Inverted Index
 
 Generates an Inverted Index object that takes a JSON array of text objects. The index allows a user to search for text blocks in the array that contain a specified collection of words.
 
 
-Installation and usage.
+##Installation and usage.
 
 1. Install Nodejs.
 2. Download the ZIP file or clone the repository
@@ -13,12 +13,11 @@ Installation and usage.
 6. Navigate to localhost:8080/jasmine/SpecRunner.html on browser to run the jasmine tests.
 
 
-CONTRIBUTING
+## CONTRIBUTING
 I'm not an expert and I'm sure there are always rooms for improvement - if you have an idea, take a look through [my repository](https://github.com/andela-ltijesunimi-israel/inverted-index) and add your comments.
 
 
-CONTRIBUTORS
+##CONTRIBUTORS
 I'm dedicated to improving and making a better version of myself in the world of technology.
 
 Thank you so much! Lovelyn.
-Status
