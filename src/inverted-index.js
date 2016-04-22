@@ -30,7 +30,7 @@ InvertedIndex.prototype.createIndex = function(filePath) {
 // End of createIndex function
 
 // Define getIndex function
-InvertedIndex.prototype.getIndex = function(filePath) {
+InvertedIndex.prototype.getIndex = function() {
     return this.index;
 };
 // End of getIndex function
