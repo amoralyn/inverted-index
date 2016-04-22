@@ -8,12 +8,12 @@ HelperMethods.prototype.findIndex = function(data, term) {
     return data.hasOwnProperty(term) ? data[term] : [];
 };
 
-// Define cleanUp function the replaces special characters in a string
+// Define cleanUp function that replaces special characters in a string
 HelperMethods.prototype.cleanUp = function(wordsToBeCleaned) {
     return wordsToBeCleaned.replace(/[^a-zA-Z\s]/g, '').toLowerCase();
 };
 
-// Define readFile function
+// Define readFile function that reads the JSON file
 HelperMethods.prototype.readFile = function(filePath) {
     var content = [];
 
@@ -32,7 +32,7 @@ HelperMethods.prototype.readFile = function(filePath) {
     return content;
 };
 
-// Does the indexing of the word in the object
+// Does the indexing of the words in the object
 HelperMethods.prototype.doIndexing = function(bookIndex, booksData) {
     for (var word in booksData) {
         if (this._index[booksData[word]]) {
@@ -45,6 +45,7 @@ HelperMethods.prototype.doIndexing = function(bookIndex, booksData) {
     }
 };
 
+// Does the searching of the terms in the index
 HelperMethods.prototype.doSearch = function(index, terms) {
     var mapFn = function(term) {
         return helper.findIndex(index, term);
