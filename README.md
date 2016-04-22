@@ -8,8 +8,8 @@ Generates an Inverted Index object that takes a JSON array of text objects. The 
 1. Install Nodejs.
 2. Download the ZIP file or clone the [repository](https://github.com/andela-ltijesunimi-israel/inverted-index) .
 3. Ensure that you are on the master branch.
-4. Run `npm install -g http-server` while on the project root directory.
-5. Run the command `http-server -c-1 ` By default, the port is set to 8080 but you can set your port by running 'php -S localhost:[port no]'
+4. Run ```npm install -g http-server``` while on the project root directory.
+5. Run the command ```http-server -c-1``` By default, the port is set to 8080 but you can set your port by running 'php -S localhost:[port no]'
 6. Navigate to localhost:8080/jasmine/SpecRunner.html on browser to run the jasmine tests.
 
 
