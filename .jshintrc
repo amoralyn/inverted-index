@@ -1,10 +1,7 @@
 {
-    // JSHint Default Configuration File (as on JSHint website)
-    // See http://jshint.com/docs/ for more details
 ​
-    "maxerr"        : 50,       // {int} Maximum error before stopping
+    "maxerr"        : 50,
 ​
-    // Enforcing
     "bitwise"       : true,
     "camelcase"     : true,
     "curly"         : true,
@@ -19,7 +16,7 @@
     "nonbsp"        : true,
     "nonew"         : false,
     "plusplus"      : false,
-    "quotmark"      : false,
+    "quotmark"      : true,
 
     "undef"         : false,
 
@@ -31,7 +28,6 @@
     "maxlen"        : 80,
     "varstmt"       : false,
 ​
-    // Relaxing
     "asi"           : false,
     "boss"          : false,
     "debug"         : false,
@@ -58,7 +54,6 @@
     "supernew"      : false,
     "validthis"     : false,
 ​
-    // Environments
     "browser"       : true,
     "browserify"    : false,
     "couch"         : false,
@@ -80,7 +75,6 @@
     "wsh"           : false,
     "yui"           : false,
 ​
-    // Custom Globals
     "globals"       : {},
-    "predef"        : ["it", "describe", "expect", "beforeAll", "InvertedIndex"]
+    "predef"        : ["it", "describe", "expect", "beforEach", "InvertedIndex"]
 }
