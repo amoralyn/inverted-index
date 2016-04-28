@@ -73,7 +73,7 @@
                 ]);
             });
 
-            it('verifies searching an invertedIndex returns array of indices of correct object', function () {
+            it('verifies search should return array of indices', function () {
                 expect(invertedIndex.searchIndex('into')).toEqual([
                     [0]
                 ]);
