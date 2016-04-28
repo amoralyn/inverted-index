@@ -9,43 +9,43 @@
 (function () {
     'use strict';
 
-    describe('Inverted Index test cases', function() {
-        var invertedIndex = new InvertedIndex();
-        var helper = new HelperMethods();
-        var result;
+    describe('Inverted Index test cases', function () {
+        var invertedIndex = new InvertedIndex(),
+            helper = new HelperMethods(),
+            result;
 
 
         beforeEach(function (done) {
             result = invertedIndex.createIndex('books.json', done);
         });
 
-        describe('Read book data', function() {
-            var jsonFile = null;
-            var _this = this;
+        describe('Read book data', function () {
+            var jsonFile = null,
+                that = this;
 
-            beforeEach(function(done) {
+            beforeEach(function (done) {
                 this.jsonFile = null;
 
-                helper.readFile('books.json', function(file) {
-                    _this.jsonFile = file;
+                helper.readFile('books.json', function (file) {
+                    that.jsonFile = file;
                     done();
                 });
             });
 
-            it('readFile method should not return empty JSON', function() {
-                expect(_this.jsonFile.length).toBeGreaterThan(0);
-                expect(_this.jsonFile).not.toEqual([]);
+            it('readFile method should not return empty JSON', function () {
+                expect(that.jsonFile.length).toBeGreaterThan(0);
+                expect(that.jsonFile).not.toEqual([]);
             });
         });
 
-        describe('Populate invertedIndex', function() {
-            it('verifies that invertedIndex is created once jsonFile is read', function() {
+        describe('Populate invertedIndex', function () {
+            it('verifies that invertedIndex is created once jsonFile is read', function () {
                 expect(invertedIndex.index).toBeDefined();
                 expect(invertedIndex.index).not.toEqual([]);
 
             });
 
-            it('verifies that invertedIndex is correct', function() {
+            it('verifies that invertedIndex is correct', function () {
                 expect(invertedIndex.index.alice).toEqual([0]);
                 expect(invertedIndex.index.of).toEqual([0, 1]);
                 expect(invertedIndex.index.lord).toEqual([1]);
@@ -53,8 +53,8 @@
             });
         });
 
-        describe('Search invertedIndex', function() {
-            it('verifies that search returns correct result', function() {
+        describe('Search invertedIndex', function () {
+            it('verifies that search returns correct result', function () {
                 expect(invertedIndex.searchIndex('alice wonderland')).toEqual([
                     [0],
                     [0]
@@ -73,7 +73,7 @@
                 ]);
             });
 
-            it('verifies searching an invertedIndex returns array of indices of correct object', function() {
+            it('verifies searching an invertedIndex returns array of indices of correct object', function () {
                 expect(invertedIndex.searchIndex('into')).toEqual([
                     [0]
                 ]);
@@ -97,7 +97,7 @@
                 ]);
             });
 
-            it('can handle varied number of search terms', function() {
+            it('can handle varied number of search terms', function () {
                 expect(invertedIndex.searchIndex('alice in wonderland'))
                     .toEqual([
                         [0],
@@ -129,7 +129,7 @@
                     ]);
             });
 
-            it('ensures search can handle an array of words', function() {
+            it('ensures search can handle an array of words', function () {
                 expect(invertedIndex.searchIndex(['alice', 'wonderland', 'in']))
                     .toEqual([
                         [0],
@@ -161,7 +161,7 @@
                     ]);
             });
 
-            it('ensures search can handle edge cases', function() {
+            it('ensures search can handle edge cases', function () {
                 expect(invertedIndex.searchIndex(['alice', 'bicycle', 'in']))
                     .toEqual([
                         [0],
@@ -184,4 +184,4 @@
         });
 
     });
-})();
+}());
