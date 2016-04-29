@@ -35,9 +35,13 @@ InvertedIndex.prototype.createIndex = function(filePath, callback) {
         }
 
         that.index = that.helper.help;
-        callback();
+        callback(content);
+        return 80;
     });
+
+    return 10;
 };
+
 // End of createIndex function
 
 // Define getIndex function

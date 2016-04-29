@@ -11,37 +11,27 @@
 
     describe('Inverted Index test cases', function () {
         var invertedIndex = new InvertedIndex(),
-            helper = new HelperMethods(),
-            result;
-
+            jsonFile = null;
 
         beforeEach(function (done) {
-            result = invertedIndex.createIndex('books.json', done);
+            invertedIndex.createIndex('books.json', function (file){
+                jsonFile = file;
+                done();
+            });
         });
 
         describe('Read book data', function () {
-            var jsonFile = null,
-                that = this;
-
-            beforeEach(function (done) {
-                this.jsonFile = null;
-
-                helper.readFile('books.json', function (file) {
-                    that.jsonFile = file;
-                    done();
-                });
-            });
 
             it('readFile method should not return empty JSON', function () {
-                expect(that.jsonFile.length).toBeGreaterThan(0);
-                expect(that.jsonFile).not.toEqual([]);
+                expect(jsonFile.length).toBeGreaterThan(0);
+                expect(jsonFile).not.toEqual([]);
             });
         });
 
         describe('Populate invertedIndex', function () {
             it('verifies that invertedIndex is created once jsonFile is read', function () {
                 expect(invertedIndex.index).toBeDefined();
-                expect(invertedIndex.index).not.toEqual([]);
+                expect(invertedIndex.index).not.toEqual({});
 
             });
 
