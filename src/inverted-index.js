@@ -32,14 +32,13 @@ InvertedIndex.prototype.createIndex = function(filePath, callback) {
             contentPerBook = content[bookInd].title + ' ' + content[bookInd].text;
             contentPerBook = that.helper.cleanUp(contentPerBook).split(/\s/);
             that.helper.doIndexing(bookInd, contentPerBook);
+
         }
 
         that.index = that.helper.help;
         callback(content);
-        return 80;
     });
 
-    return 10;
 };
 
 // End of createIndex function

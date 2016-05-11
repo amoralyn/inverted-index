@@ -15,7 +15,7 @@ var HelperMethods = null;
         return wordsToBeCleaned.replace(/[^a-zA-Z\s]/g, '').toLowerCase();
     };
 
-    HelperMethods.prototype.makeRequest = function(filePath) {
+    HelperMethods.prototype.makeRequest = function(filePath) { 
         return $.ajax({
             url: filePath,
             async: true,
